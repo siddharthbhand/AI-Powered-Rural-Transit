@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 
 from app.database.database import Base
 
@@ -31,3 +32,9 @@ class Bus(Base):
         server_default=func.now(),
         onupdate=func.now()
     )
+
+    locations = relationship(
+    "BusLocation",
+    back_populates="bus",
+    cascade="all, delete-orphan"
+)
