@@ -10,6 +10,8 @@ from app.schemas.bus_location import (
     BusLocationResponse,
 )
 from app.services.bus_location_service import BusLocationService
+from app.websocket.websocket import connection_manager
+
 
 router = APIRouter(
     prefix="/bus-locations",
@@ -22,17 +24,24 @@ router = APIRouter(
     response_model=BusLocationResponse,
     status_code=status.HTTP_201_CREATED,
 )
-def create_location(
+async def create_location(
     location: BusLocationCreate,
     db: Session = Depends(get_db),
 ):
-    db_location = BusLocationService.create_location(db, location)
+    db_location = BusLocationService.create_location(
+        db,
+        location,
+    )
 
     if not db_location:
         raise HTTPException(
             status_code=404,
             detail="Bus not found",
         )
+
+    await connection_manager.broadcast(
+        f"Bus {db_location.bus_id} location updated"
+    )
 
     return db_location
 
