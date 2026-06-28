@@ -1,5 +1,7 @@
-from fastapi import WebSocket
 from typing import List
+import json
+
+from fastapi import WebSocket
 
 
 class ConnectionManager:
@@ -22,7 +24,9 @@ class ConnectionManager:
         websocket: WebSocket,
     ):
 
-        self.active_connections.remove(websocket)
+        if websocket in self.active_connections:
+
+            self.active_connections.remove(websocket)
 
     async def send_personal_message(
         self,
@@ -32,6 +36,14 @@ class ConnectionManager:
 
         await websocket.send_text(message)
 
+    async def send_personal_json(
+        self,
+        data: dict,
+        websocket: WebSocket,
+    ):
+
+        await websocket.send_json(data)
+
     async def broadcast(
         self,
         message: str,
@@ -40,3 +52,21 @@ class ConnectionManager:
         for connection in self.active_connections:
 
             await connection.send_text(message)
+
+    async def broadcast_json(
+        self,
+        data: dict,
+    ):
+
+        for connection in self.active_connections:
+
+            await connection.send_json(data)
+
+    async def broadcast_event(
+        self,
+        event: dict,
+    ):
+
+        for connection in self.active_connections:
+
+            await connection.send_json(event)

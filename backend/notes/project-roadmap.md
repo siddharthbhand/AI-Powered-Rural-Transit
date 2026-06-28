@@ -37,3 +37,13 @@
 - [ ] GitHub Actions
 - [ ] CI/CD
 - [ ] Deployment
+
+- [x] Phase 1 – Project Setup
+- [x] Phase 2 – Database Configuration
+- [x] Phase 3 – JWT Authentication
+- [x] Phase 4 – Bus Management
+- [x] Phase 5 – Route Management
+- [x] Phase 6 – Bus Location CRUD
+- [x] Phase 7 – Real-Time WebSocket
+- [x] Phase 8 – GPS Simulator & Live Tracking
+- [ ] Phase 9 – ETA Prediction
