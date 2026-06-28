@@ -66,8 +66,12 @@ class BusLocationService:
 
         return (
             db.query(BusLocation)
-            .filter(BusLocation.bus_id == bus_id)
-            .order_by(BusLocation.recorded_at.desc())
+            .filter(
+                BusLocation.bus_id == bus_id
+            )
+            .order_by(
+                BusLocation.recorded_at.desc()
+            )
             .first()
         )
 
