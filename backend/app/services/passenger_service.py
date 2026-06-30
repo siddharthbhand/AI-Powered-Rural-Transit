@@ -93,3 +93,43 @@ class PassengerService:
             )
 
         return result
+
+    @staticmethod
+    def get_bus_details(
+        db: Session,
+        bus_id: int,
+    ):
+
+        bus = BusService.get_bus_by_id(
+            db=db,
+            bus_id=bus_id,
+        )
+
+        if not bus:
+            return None
+
+        latest_location = BusLocationService.get_latest_location(
+            db=db,
+            bus_id=bus.id,
+        )
+
+        return {
+            "id": bus.id,
+            "bus_number": bus.bus_number,
+            "bus_name": bus.bus_name,
+            "operator_name": bus.operator_name,
+            "source": bus.source,
+            "destination": bus.destination,
+            "bus_type": bus.bus_type,
+            "status": bus.status,
+            "live_location": (
+                {
+                    "latitude": latest_location.latitude,
+                    "longitude": latest_location.longitude,
+                    "speed": latest_location.speed,
+                    "heading": latest_location.heading,
+                }
+                if latest_location
+                else None
+            ),
+        }

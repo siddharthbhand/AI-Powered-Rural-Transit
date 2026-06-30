@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
 from app.database.database import get_db
@@ -14,7 +14,6 @@ router = APIRouter(
 def get_live_buses(
     db: Session = Depends(get_db),
 ):
-    print("===== LIVE BUSES API CALLED =====")
 
     return PassengerService.get_live_buses(db)
 
@@ -31,3 +30,23 @@ def search_live_buses(
         source=source,
         destination=destination,
     )
+
+
+@router.get("/bus/{bus_id}")
+def get_bus_details(
+    bus_id: int,
+    db: Session = Depends(get_db),
+):
+
+    bus = PassengerService.get_bus_details(
+        db=db,
+        bus_id=bus_id,
+    )
+
+    if not bus:
+        raise HTTPException(
+            status_code=404,
+            detail="Bus not found",
+        )
+
+    return bus

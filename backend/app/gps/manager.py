@@ -16,7 +16,7 @@ class GPSSimulationManager:
 
         for bus_id in range(
             1,
-            settings.DEFAULT_BUS_ID + 1,
+            settings.SIMULATED_BUS_COUNT + 1,
         ):
 
             simulator = GPSSimulator(bus_id)
