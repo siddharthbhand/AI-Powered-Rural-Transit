@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>FastAPI WebSocket Test</title>
+
+    <style>
+
+        body{
+
+            font-family: Arial, sans-serif;
+            margin:40px;
+
+        }
+
+        h2{
+
+            color:#1e88e5;
+
+        }
+
+        input{
+
+            width:300px;
+            padding:8px;
+
+        }
+
+        button{
+
+            padding:8px 18px;
+
+        }
+
+        pre{
+
+            background:#f4f4f4;
+            padding:15px;
+            border-radius:8px;
+            overflow:auto;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h2>FastAPI WebSocket Test</h2>
+
+<input
+    id="message"
+    type="text"
+    placeholder="Type message"
+/>
+
+<button onclick="sendMessage()">
+
+    Send
+
+</button>
+
+<h3>Incoming Events</h3>
+
+<div id="events"></div>
+
+<script>
+
+const socket = new WebSocket("ws://127.0.0.1:8000/ws");
+
+socket.onopen = function(){
+
+    console.log("Connected");
+
+};
+
+socket.onmessage = function(event){
+
+    const container = document.getElementById("events");
+
+    const block = document.createElement("pre");
+
+    try{
+
+        const json = JSON.parse(event.data);
+
+        block.textContent = JSON.stringify(
+            json,
+            null,
+            4
+        );
+
+    }
+
+    catch{
+
+        block.textContent = event.data;
+
+    }
+
+    container.prepend(block);
+
+};
+
+function sendMessage(){
+
+    const input = document.getElementById("message");
+
+    socket.send(input.value);
+
+    input.value="";
+
+}
+
+</script>
+
+</body>
+
+</html>
