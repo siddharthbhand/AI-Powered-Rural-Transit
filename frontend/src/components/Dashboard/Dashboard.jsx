@@ -2,41 +2,38 @@ import DashboardCard from "./DashboardCard";
 
 function Dashboard() {
   return (
-    <div className="bg-white rounded-3xl shadow-xl p-8">
+    <div className="w-full rounded-3xl bg-white p-4 sm:p-6 lg:p-8 shadow-xl">
 
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-
-        <h3 className="text-2xl font-bold text-slate-800">
+      <div className="mb-6 flex items-center justify-between">
+        <h3 className="text-xl sm:text-2xl font-bold text-slate-800">
           Live Dashboard
         </h3>
 
-        <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold">
+        <span className="rounded-full bg-green-100 px-3 py-1 text-xs sm:text-sm font-semibold text-green-700">
           ● Live
         </span>
-
       </div>
 
-      {/* Mini Map Preview */}
-      <div className="bg-slate-100 rounded-2xl h-52 flex flex-col items-center justify-center border-2 border-dashed border-slate-300 mb-6">
+      {/* Map Preview */}
+      <div className="mb-6 flex h-40 sm:h-52 flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-300 bg-slate-100">
 
-        <div className="text-6xl">
+        <div className="text-4xl sm:text-6xl">
           🗺️
         </div>
 
-        <h4 className="mt-4 text-lg font-semibold text-slate-700">
+        <h4 className="mt-3 text-base sm:text-lg font-semibold text-slate-700 text-center">
           Live Bus Map Preview
         </h4>
 
-        <p className="text-sm text-slate-500 mt-2">
+        <p className="mt-2 text-center text-xs sm:text-sm text-slate-500 px-3">
           OpenStreetMap Integration Coming Soon
         </p>
 
       </div>
 
-      {/* Statistics */}
-      <div className="space-y-4">
-
+      {/* Dashboard Cards */}
+      <div className="space-y-3 sm:space-y-4">
         <DashboardCard
           title="Active Buses"
           value="124"
@@ -54,7 +51,6 @@ function Dashboard() {
           value="96%"
           valueColor="text-orange-500"
         />
-
       </div>
 
     </div>
