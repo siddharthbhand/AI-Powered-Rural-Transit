@@ -1,44 +1,50 @@
 import StatisticCard from "./StatisticCard";
 
 function Statistics() {
-  return (
-    <section className="bg-slate-50 py-24">
-      <div className="max-w-7xl mx-auto px-8">
+  const stats = [
+    {
+      value: "50K+",
+      label: "Daily Passengers",
+    },
+    {
+      value: "500+",
+      label: "Smart Routes",
+    },
+    {
+      value: "99%",
+      label: "ETA Accuracy",
+    },
+    {
+      value: "24×7",
+      label: "Live Monitoring",
+    },
+  ];
 
-        <div className="text-center">
-          <h2 className="text-5xl font-bold text-slate-900">
+  return (
+    <section className="py-24 bg-gradient-to-b from-white to-slate-100">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Heading */}
+        <div className="text-center max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
             Trusted by Rural Communities
           </h2>
 
-          <p className="mt-6 text-xl text-slate-600">
-            Real-time transport intelligence powered by AI and live GPS.
+          <p className="mt-5 text-lg text-slate-600 leading-8">
+            Real-time transport intelligence helping passengers,
+            drivers and authorities across villages.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
-
-          <StatisticCard
-            number="50K+"
-            label="Daily Passengers"
-          />
-
-          <StatisticCard
-            number="500+"
-            label="Smart Routes"
-          />
-
-          <StatisticCard
-            number="99%"
-            label="ETA Accuracy"
-          />
-
-          <StatisticCard
-            number="24×7"
-            label="Live Monitoring"
-          />
-
+        {/* Statistics Grid */}
+        <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6">
+          {stats.map((item) => (
+            <StatisticCard
+              key={item.label}
+              value={item.value}
+              label={item.label}
+            />
+          ))}
         </div>
-
       </div>
     </section>
   );

@@ -75,3 +75,9 @@ select {
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+
+/* DEBUG ONLY */
+
+* {
+  outline: 1px solid red;
+}

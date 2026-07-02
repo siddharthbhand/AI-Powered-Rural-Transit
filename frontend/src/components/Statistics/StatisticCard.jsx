@@ -1,25 +1,45 @@
-function StatisticCard({ number, label }) {
+function StatisticCard({ value, label }) {
   return (
     <div
       className="
         bg-white
         rounded-3xl
-        shadow-md
         p-8
         text-center
-        border
-        border-slate-200
+        shadow-md
+        border border-slate-200
         transition-all
         duration-300
         hover:-translate-y-2
-        hover:shadow-xl
+        hover:shadow-2xl
+        hover:border-blue-200
       "
     >
-      <h3 className="text-5xl font-bold text-blue-600">
-        {number}
+      {/* Number */}
+      <h3
+        className="
+          text-4xl
+          md:text-5xl
+          font-extrabold
+          bg-gradient-to-r
+          from-blue-600
+          to-cyan-500
+          bg-clip-text
+          text-transparent
+        "
+      >
+        {value}
       </h3>
 
-      <p className="mt-4 text-lg text-slate-600">
+      {/* Label */}
+      <p
+        className="
+          mt-4
+          text-slate-600
+          font-medium
+          text-base
+        "
+      >
         {label}
       </p>
     </div>

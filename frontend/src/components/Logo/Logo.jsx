@@ -1,11 +1,12 @@
 function Logo() {
   return (
-    <div className="flex items-center gap-3 cursor-pointer">
+    <div className="flex items-center gap-3 cursor-pointer flex-shrink-0">
+
       <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-lg shadow-md">
         RT
       </div>
 
-      <div>
+      <div className="hidden sm:block">
         <h1 className="text-lg font-bold text-slate-900">
           RuralTransit AI
         </h1>
@@ -14,6 +15,7 @@ function Logo() {
           Smart Public Transport
         </p>
       </div>
+
     </div>
   );
 }
